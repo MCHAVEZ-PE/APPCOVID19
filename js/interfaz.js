@@ -9,7 +9,9 @@ class Intefaz{
     }
 
     rellenarSelect=()=>{
-        var data = fetch('../resources/countries.json')
+        var data = fetch('././resources/countries.json',{
+            'cors':'no-cors'
+        })
         .then(data =>{
             return data.json();
         })

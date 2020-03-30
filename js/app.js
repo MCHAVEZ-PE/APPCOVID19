@@ -198,3 +198,7 @@ interfaz.CasosPorPaises()
         // console.log(casosPorPais);
     })
     .catch(e => {console.log(e)})
+
+
+
+    

@@ -80,6 +80,9 @@
     margin: 0px 0px 0px 8px;
 }
 
+.numCasos{
+    font-size: 26px;
+}
 
 #textcovid:before{
     content: "Coronavirus - COVID19";
@@ -92,10 +95,13 @@
     content: "Datos confirmados hasta";
 }
 @media (max-width: 550px) {
-    #charts {
+    /* #charts {
       display: none;
-    }
+    } */
     #textcovid:before{
         content: "COVID-19";
+    }
+    .celda{
+        display: none;  
     }
   }

@@ -91,46 +91,26 @@ dataSet =  (fecha,confirmados,muertos)=>{
             {
                 label: 'Confirmado',
                 data:  confirmados,
-                // backgroundColor: [
-                //     'rgba(255, 99, 132, 0.2)',
-                //     'rgba(54, 162, 235, 0.2)',
-                //     'rgba(255, 206, 86, 0.2)',
-                //     'rgba(75, 192, 192, 0.2)',
-                //     'rgba(153, 102, 255, 0.2)',
-                //     'rgba(255, 159, 64, 0.2)'
-                // ],
-                // borderColor: [
-                //     'rgba(255, 99, 132, 1)',
-                //     'rgba(54, 162, 235, 1)',
-                //     'rgba(255, 206, 86, 1)',
-                //     'rgba(75, 192, 192, 1)',
-                //     'rgba(153, 102, 255, 1)',
-                //     'rgba(255, 159, 64, 1)'
-                // ],
+                backgroundColor:  'transparent' ,
+                borderColor: 
+                    'green',
+                // pointBorderColor:'transparent',
+                pointRadius:2,
+                pointBorderWidth:1,
+                lineTension:0,
                 fill: false,
-                borderWidth: 4
+                borderWidth: 2
             },
             {
                 label: 'Muertes',
                 data:  muertos,
-                // backgroundColor: [
-                //     'rgba(255, 99, 132, 0.2)',
-                //     'rgba(54, 162, 235, 0.2)',
-                //     'rgba(255, 206, 86, 0.2)',
-                //     'rgba(75, 192, 192, 0.2)',
-                //     'rgba(153, 102, 255, 0.2)',
-                //     'rgba(255, 159, 64, 0.2)'
-                // ],
-                // borderColor: [
-                //     'rgba(255, 99, 132, 1)',
-                //     'rgba(54, 162, 235, 1)',
-                //     'rgba(255, 206, 86, 1)',
-                //     'rgba(75, 192, 192, 1)',
-                //     'rgba(153, 102, 255, 1)',
-                //     'rgba(255, 159, 64, 1)'
-                // ],
+                backgroundColor: 'transparent',
+                borderColor:  'red',
+                pointRadius:2,
+                pointBorderWidth:1,
+                lineTension:0,
                 fill: false,
-                borderWidth: 4
+                borderWidth: 2
             }
             
         ]
@@ -143,17 +123,29 @@ dataSet =  (fecha,confirmados,muertos)=>{
             var arrayfecha = [],
                 muertos= [],
                 confirmados= [];
+            console.log(result.length); 
 
-            result.forEach(element => {
-                arrayfecha.push(formaterFecha(element.reportDate));
-                confirmados.push(element.confirmed.total);
-                muertos.push(element.deaths.total);
-            });
+
+            for (let i = 30; i < result.length; i++) {
+                // const element = result[index];
+                arrayfecha.push(formaterFecha(result[i].reportDate));
+                confirmados.push(result[i].confirmed.total);
+                muertos.push(result[i].deaths.total);
+                
+            
+            }
+            //     result.forEach(element => {
+            // });
                 
                 var myChart = new Chart(ctx, {
                     type: 'line',
                 data: dataSet(arrayfecha,confirmados,muertos) ,
                 options: {
+                    legend:{
+                        labels:{
+                            fontColor:'Black'
+                        }
+                    },
                     scales: {
                         yAxes: [{
                             ticks: {
@@ -198,7 +190,7 @@ interfaz.CasosPorPaises()
                 tr +=`<tr>
                     <td>${casosPorPais[index].country}</td>
                     <td>${casosPorPais[index].confirmed}</td>
-                    <td>${casosPorPais[index].recovered}</td>
+                    <td class='celda'>${casosPorPais[index].recovered}</td>
                     <td>${casosPorPais[index].deaths}</td>
                     </tr>`;
                 }
